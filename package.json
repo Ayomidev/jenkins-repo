@@ -1,0 +1,20 @@
+{
+    "name": "jenkins-web-app",
+    "version": "1.0.0",
+    "description": "A simple Node.js web application for Jenkins pipeline demo",
+    "main": "webapp.js",
+    "scripts": {
+      "start": "node webapp.js",
+      "test": "mocha tests/test.js"
+    },
+    "dependencies": {
+      "express": "^4.17.1"
+    },
+    "devDependencies": {
+      "mocha": "^9.0.0",
+      "chai": "^4.3.4"
+    },
+    "author": "Your Name",
+    "license": "MIT"
+  }
+  
