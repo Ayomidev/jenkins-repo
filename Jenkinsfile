@@ -9,7 +9,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Pull the source code from your Git repository
-                git 'https://github.com/Ayomidev/jenkins-repo.git'
+                git branch: 'main', url: 'https://github.com/Ayomidev/jenkins-repo.git'
             }
         }
 
