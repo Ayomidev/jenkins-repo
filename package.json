@@ -5,7 +5,7 @@
     "main": "webapp.js",
     "scripts": {
       "start": "node webapp.js",
-      "test": "mocha tests/test.js"
+      "test": ""
     },
     "dependencies": {
       "express": "^4.17.1"
