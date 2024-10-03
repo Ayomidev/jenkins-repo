@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'NodeJS 22.9.0' // This should match the name you gave in Global Tool Configuration
+    }
+
     environment {
         DOCKER_IMAGE = 'ayo-pistis-webapp-img:latest' // Define your Docker image name
     }
@@ -16,6 +20,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Install dependencies (assuming a Node.js project)
+                sh 'npm --version' // Verify npm is installed
                 sh 'npm install'
             }
         }
