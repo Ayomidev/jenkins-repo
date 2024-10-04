@@ -22,14 +22,15 @@ pipeline {
                 script {
                     // Check if Docker is installed
                     def dockerCheck = sh(script: 'command -v docker || echo "Docker not found"', returnStdout: true).trim()
-                    
+
                     if (dockerCheck == "Docker not found") {
-                        // If Docker is not found, install Docker
-                        echo 'Docker not found. Installing Docker...'
+                        // If Docker is not found, install Docker using apt-get (for Ubuntu/Debian)
+                        echo 'Docker not found. Installing docker.io...'
                         sh '''
-                            curl -fsSL https://get.docker.com -o get-docker.sh
-                            sh get-docker.sh
-                            rm get-docker.sh
+                            sudo apt-get update
+                            sudo apt-get install -y docker.io
+                            sudo systemctl start docker
+                            sudo systemctl enable docker
                         '''
                     } else {
                         echo "Docker is already installed: ${dockerCheck}"
@@ -38,6 +39,7 @@ pipeline {
                 }
             }
         }
+
 
         stage('Build') {
             steps {
