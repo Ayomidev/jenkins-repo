@@ -17,6 +17,28 @@ pipeline {
             }
         }
 
+        stage('Install Docker') {
+            steps {
+                script {
+                    // Check if Docker is installed
+                    def dockerCheck = sh(script: 'command -v docker || echo "Docker not found"', returnStdout: true).trim()
+                    
+                    if (dockerCheck == "Docker not found") {
+                        // If Docker is not found, install Docker
+                        echo 'Docker not found. Installing Docker...'
+                        sh '''
+                            curl -fsSL https://get.docker.com -o get-docker.sh
+                            sh get-docker.sh
+                            rm get-docker.sh
+                        '''
+                    } else {
+                        echo "Docker is already installed: ${dockerCheck}"
+                        sh 'docker --version' // Check Docker version
+                    }
+                }
+            }
+        }
+
         stage('Build') {
             steps {
                 // Install dependencies (assuming a Node.js project)
