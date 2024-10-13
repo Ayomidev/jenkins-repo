@@ -29,8 +29,7 @@ pipeline {
                         sh '''
                             sudo apt-get update
                             sudo apt-get install -y docker.io
-                            sudo systemctl start docker
-                            sudo systemctl enable docker
+                            # skip the start & enable docker since it's running on a container and not my pc
                         '''
                     } else {
                         echo "Docker is already installed: ${dockerCheck}"
